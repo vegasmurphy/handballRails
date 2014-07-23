@@ -1,0 +1,2 @@
+module PlayerGoalsHelper
+end

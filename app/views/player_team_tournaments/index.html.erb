@@ -1,0 +1,29 @@
+<h1>Listing player_team_tournaments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Team</th>
+      <th>Tournament</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @player_team_tournaments.each do |player_team_tournament| %>
+      <tr>
+        <td><%= player_team_tournament.player_id %></td>
+        <td><%= player_team_tournament.team_id %></td>
+        <td><%= player_team_tournament.tournament_id %></td>
+        <td><%= link_to 'Show', player_team_tournament %></td>
+        <td><%= link_to 'Edit', edit_player_team_tournament_path(player_team_tournament) %></td>
+        <td><%= link_to 'Destroy', player_team_tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player team tournament', new_player_team_tournament_path %>

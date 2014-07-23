@@ -1,0 +1,29 @@
+<h1>Listing player_goals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Goals</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @player_goals.each do |player_goal| %>
+      <tr>
+        <td><%= player_goal.player_id %></td>
+        <td><%= player_goal.tournament_id %></td>
+        <td><%= player_goal.goals %></td>
+        <td><%= link_to 'Show', player_goal %></td>
+        <td><%= link_to 'Edit', edit_player_goal_path(player_goal) %></td>
+        <td><%= link_to 'Destroy', player_goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player goal', new_player_goal_path %>
