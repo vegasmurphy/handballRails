@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :player_game_statistics
+
   get 'search/index'
 
   get 'home/index'

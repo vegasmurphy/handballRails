@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  game_id: 1
+  player_id: 1
+  goals: 1
+  yellow_cards: 1
+  red_cards: 1
+  two_minutes: 1
+
+two:
+  game_id: 1
+  player_id: 1
+  goals: 1
+  yellow_cards: 1
+  red_cards: 1
+  two_minutes: 1

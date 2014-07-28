@@ -1,0 +1,35 @@
+<h1>Listing player_game_statistics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Player</th>
+      <th>Goals</th>
+      <th>Yellow cards</th>
+      <th>Red cards</th>
+      <th>Two minutes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @player_game_statistics.each do |player_game_statistic| %>
+      <tr>
+        <td><%= player_game_statistic.game_id %></td>
+        <td><%= player_game_statistic.player_id %></td>
+        <td><%= player_game_statistic.goals %></td>
+        <td><%= player_game_statistic.yellow_cards %></td>
+        <td><%= player_game_statistic.red_cards %></td>
+        <td><%= player_game_statistic.two_minutes %></td>
+        <td><%= link_to 'Show', player_game_statistic %></td>
+        <td><%= link_to 'Edit', edit_player_game_statistic_path(player_game_statistic) %></td>
+        <td><%= link_to 'Destroy', player_game_statistic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player game statistic', new_player_game_statistic_path %>
