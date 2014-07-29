@@ -15,10 +15,10 @@
       <tr>
         <td><%= tournament.year %></td>
         <td><%= tournament.semester %></td>
-        <td><%= tournament.league_id %></td>
-        <td><%= link_to 'Show', tournament %></td>
-        <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
-        <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= League.find(tournament.league_id).name %></td>
+        <td><%= link_to 'Show', [tournament.league, tournament] %></td>
+        <td><%= link_to 'Edit', edit_league_tournament_path(tournament.league, tournament) %></td>
+        <td><%= link_to 'Destroy', [tournament.league,tournament], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Tournament', new_tournament_path %>
+<%= link_to 'New Tournament', new_league_tournament_path %>

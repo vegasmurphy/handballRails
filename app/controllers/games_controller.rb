@@ -28,7 +28,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.html { redirect_to @game, notice: game_params }
         format.json { render :show, status: :created, location: @game }
       else
         format.html { render :new }
@@ -69,6 +69,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:team_id, :opponent_id, :team_score, :opponent_score, :date, :location)
+      params.require(:game).permit(:team_id, :opponent_id, :team_score, :opponent_score, :date, :location,:tournament_id)
     end
 end

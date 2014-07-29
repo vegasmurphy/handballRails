@@ -4,31 +4,41 @@ class TournamentsController < ApplicationController
   # GET /tournaments
   # GET /tournaments.json
   def index
-    @tournaments = Tournament.all
+    league=League.find(params[:league_id])
+    @tournaments = league.tournaments
   end
 
   # GET /tournaments/1
   # GET /tournaments/1.json
   def show
+    @teams=@tournament.teams
   end
 
   # GET /tournaments/new
   def new
-    @tournament = Tournament.new
+    league=League.find(params[:league_id])
+    @tournament = league.tournaments.build
   end
 
   # GET /tournaments/1/edit
   def edit
   end
 
+  def add_team
+    @tournament=Tournament.find(params[:id])
+    @team_tournament=@tournament.team_tournaments.build
+  end
+
+
   # POST /tournaments
   # POST /tournaments.json
   def create
-    @tournament = Tournament.new(tournament_params)
+    league=League.find(params[:league_id])
+    @tournament = league.tournaments.create(tournament_params)
 
     respond_to do |format|
       if @tournament.save
-        format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
+        format.html { redirect_to [@tournament.league,@tournam], notice: 'Tournament was successfully created.' }
         format.json { render :show, status: :created, location: @tournament }
       else
         format.html { render :new }

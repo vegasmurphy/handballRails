@@ -61,3 +61,26 @@
 
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
+<table>
+  <thead>
+      <tr>
+        <th>Games Played</th>
+        <th>Points</th>
+        <th>Goals Favor</th>
+        <th>Goals Against</th>
+        <th>Goals Difference</th>
+      </tr>
+  </thead>
+<tbody>
+  <% @team.tournaments.each do |tournament| %>
+      <% score=@scores[tournament] %>
+      <tr>
+        <td><%= score[:games_played] %></td>
+        <td><%= score[:points] %></td>
+        <td><%= score[:goals_favor] %></td>
+        <td><%= score[:goals_against] %></td>
+        <td><%= score[:goal_difference] %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

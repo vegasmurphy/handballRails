@@ -15,6 +15,10 @@ class TeamsController < ApplicationController
     @local_games=@team.games
     @games=@local_games+@visiting_games
     @players=@team.players
+    @scores={}
+    @team.tournaments.each do |tournament|
+      @scores[tournament]=@team.score(tournament)
+    end
   end
 
   # GET /teams/new

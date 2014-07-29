@@ -17,9 +17,11 @@ Rails.application.routes.draw do
 
   resources :teams
 
-  resources :tournaments
+  resources :leagues do
+    resources :tournaments
+    get 'tournaments/:id/add_team' => 'tournaments#add_team'
+  end
 
-  resources :leagues
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
