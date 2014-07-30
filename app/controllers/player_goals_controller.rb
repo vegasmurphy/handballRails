@@ -1,6 +1,6 @@
 class PlayerGoalsController < ApplicationController
   before_action :set_player_goal, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate, except: [:index, :show]
   # GET /player_goals
   # GET /player_goals.json
   def index

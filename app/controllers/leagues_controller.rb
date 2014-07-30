@@ -1,6 +1,6 @@
 class LeaguesController < ApplicationController
   before_action :set_league, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate, except: [:index, :show]
   # GET /leagues
   # GET /leagues.json
   def index
@@ -10,7 +10,8 @@ class LeaguesController < ApplicationController
   # GET /leagues/1
   # GET /leagues/1.json
   def show
-    @tournaments=@league.tournaments
+    @tournaments=@league.tournaments.sort_by &:year
+    @tournaments.reverse!
   end
 
   # GET /leagues/new

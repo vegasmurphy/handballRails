@@ -18,7 +18,7 @@ class Team < ActiveRecord::Base
         ga=0
         gd=0
     	visiting_games.each do |game|
-    		if game.tournament_id==tournament
+    		if game.tournament_id==tournament.id
     			count=count+1
                 gf+=game.opponent_score
                 ga+=game.team_score
@@ -32,7 +32,7 @@ class Team < ActiveRecord::Base
             end
     	end
     	games.each do |game|
-    		if (game.tournament_id==tournament)
+    		if (game.tournament_id==tournament.id)
     			count+=1
                 ga+=game.opponent_score
                 gf+=game.team_score

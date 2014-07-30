@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate, except: [:index, :show]
   # GET /teams
   # GET /teams.json
   def index

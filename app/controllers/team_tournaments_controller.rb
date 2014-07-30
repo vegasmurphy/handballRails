@@ -1,6 +1,6 @@
 class TeamTournamentsController < ApplicationController
   before_action :set_team_tournament, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate, except: [:index, :show]
   # GET /team_tournaments
   # GET /team_tournaments.json
   def index

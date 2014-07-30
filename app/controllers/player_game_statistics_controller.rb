@@ -1,6 +1,6 @@
 class PlayerGameStatisticsController < ApplicationController
   before_action :set_player_game_statistic, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate, except: [:index, :show]
   # GET /player_game_statistics
   # GET /player_game_statistics.json
   def index
