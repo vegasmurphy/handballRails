@@ -11,39 +11,37 @@ class Team < ActiveRecord::Base
     end
 
     def score(tournament)
+        #return games.where("tournament_id = ?",tournament)
+        #return Team.includes(:tournaments).references(:tournaments)
     	scores={}
     	count=0
         points=0
         gf=0
         ga=0
         gd=0
-    	visiting_games.each do |game|
-    		if game.tournament_id==tournament.id
-    			count=count+1
-                gf+=game.opponent_score
-                ga+=game.team_score
-                if game.opponent_score>game.team_score
-                    points+=3
-                elsif game.opponent_score==game.team_score
-                    points+=2
-                else
-                    points+=1
-                end
+    	visiting_games.where("tournament_id = ?",tournament).each do |game|
+			count=count+1
+            gf+=game.opponent_score
+            ga+=game.team_score
+            if game.opponent_score>game.team_score
+                points+=3
+            elsif game.opponent_score==game.team_score
+                points+=2
+            else
+                points+=1
             end
     	end
-    	games.each do |game|
-    		if (game.tournament_id==tournament.id)
-    			count+=1
-                ga+=game.opponent_score
-                gf+=game.team_score
-                if game.opponent_score<game.team_score
-                    points+=3
-                elsif game.opponent_score==game.team_score
-                    points+=2
-                else
-                    points+=1
-                end
-    		end
+    	games.where("tournament_id = ?",tournament).each do |game|
+			count=count+1
+            ga+=game.opponent_score
+            gf+=game.team_score
+            if game.opponent_score<game.team_score
+                points+=3
+            elsif game.opponent_score==game.team_score
+                points+=2
+            else
+                points+=1
+            end
     	end
     	scores[:games_played]=count
         scores[:goals_favor]=gf
@@ -52,4 +50,5 @@ class Team < ActiveRecord::Base
         scores[:points]=points
     	return scores
     end
+
 end

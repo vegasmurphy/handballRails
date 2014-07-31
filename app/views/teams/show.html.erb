@@ -62,9 +62,28 @@
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Semester</th>
+      <th>League</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tournaments.each do |tournament| %>
+      <tr>
+        <td><%= tournament.year %></td>
+        <td><%= tournament.semester %></td>
+        <td><%= League.find(tournament.league_id).name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 
-<table>
+<table class="table">
   <thead>
       <tr>
         <th>Games Played</th>
@@ -88,3 +107,5 @@
       <% end %>
   </tbody>
 </table>
+
+<%= @current_tournament %>

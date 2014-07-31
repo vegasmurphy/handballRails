@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   before_action :authenticate, except: [:index, :show]
+  before_action :set_current_tournament, only: [:show] 
   # GET /teams
   # GET /teams.json
   def index
@@ -11,11 +12,13 @@ class TeamsController < ApplicationController
   # GET /teams/1.json
   def show
     @teams = Team.all
-    @visiting_games=@team.visiting_games
-    @local_games=@team.games
-    @games=@local_games+@visiting_games
-    @players=@team.players
-    @scores={}
+    @visiting_games = @team.visiting_games
+    @local_games = @team.games.where("tournament_id = ?",1)
+    @games = @local_games+@visiting_games
+    @players = @team.players
+    @scores = {}
+    #@query = @team.score(@team.tournaments.find(1))
+    @tournaments=@team.tournaments
     @team.tournaments.each do |tournament|
       @scores[tournament]=@team.score(tournament)
     end
@@ -79,5 +82,9 @@ class TeamsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
       params.require(:team).permit(:name)
+    end
+    
+    def set_current_tournament
+      @current_tournament=Team.find(params[:id]).tournaments.where("year = ? AND semester =?",current_tournament[:year],current_tournament[:semester]).first
     end
 end

@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+primeraA=Team.create([{name: 'Pias A'},{name: 'Pias B'},{name: 'Rojas A'},{name: 'Barrio Parque A'},{name: 'Alta Gracia'},{name: 'Universitarios'},{name: 'CIEF'},{name: 'Villa Maria Handball'}])
+leagues=League.create([{name: 'Primera A Masculiino'},{name: 'Primera A Femenino'},{name: 'Primera B Masculino'},{name: 'Primera B Masculino'}])
