@@ -1,7 +1,19 @@
 <h1>Search Results</h1>
+<% if @players %>
+<h2>Players</h2>
 <ul>
-    <% @results.each do |grant| %>
-  <li><%= link_to grant.name, player_path(grant), 
-    :action => 'show'  %></li>
+  <% @players.each do |grant| %>
+	  <li><%= link_to grant.name, player_path(grant), 
+	    :action => 'show'  %></li>
   <% end %>
 </ul>
+<% end %>
+<% if @teams %>
+<h2>Teams</h2>
+<ul>
+  <% @teams.each do |grant| %>
+	  <li><%= link_to grant.name, team_path(grant), 
+	    :action => 'show'  %></li>
+  <% end %>
+</ul>
+<% end %>

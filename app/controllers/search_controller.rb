@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
   def index
-  	@results = Player.search params["query"]
+  	@players = Player.search params["query"]
+  	@teams = Team.search params["query"]
   end
 
 end

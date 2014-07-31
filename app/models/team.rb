@@ -51,4 +51,7 @@ class Team < ActiveRecord::Base
     	return scores
     end
 
+    def self.search(search)
+       where("lower(name) like lower(?)", "%#{search}%")
+    end
 end
