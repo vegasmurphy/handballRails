@@ -14,6 +14,7 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
+    @teams = Team.all
     @game = Game.new
   end
 
