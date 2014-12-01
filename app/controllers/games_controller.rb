@@ -66,10 +66,21 @@ class GamesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = Game.find(params[:id])
+      get_team_players
+      @player_game_statistic=PlayerGameStatistic.new({:game_id => @game.id,:player_id=>get_team_players.first.id})
+      get_opponent_players
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
       params.require(:game).permit(:team_id, :opponent_id, :team_score, :opponent_score, :date, :location,:tournament_id)
+    end
+
+    def get_team_players
+      @team_players=@game.team.get_current_players
+    end
+
+    def get_opponent_players
+      @opponent_players=@game.opponent.get_current_players  
     end
 end

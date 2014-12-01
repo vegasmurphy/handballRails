@@ -85,6 +85,6 @@ class TeamsController < ApplicationController
     end
     
     def set_current_tournament
-      @current_tournament=Team.find(params[:id]).tournaments.where("year = ? AND semester =?",current_tournament[:year],current_tournament[:semester]).first
+      @current_tournament=Team.find(params[:id]).get_current_tournament
     end
 end

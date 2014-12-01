@@ -2,12 +2,12 @@
 
 <p>
   <strong>Team:</strong>
-  <%= @game.team_id %>
+  <%= @game.team.name %>
 </p>
 
 <p>
   <strong>Opponent:</strong>
-  <%= @game.opponent_id %>
+  <%= @game.opponent.name %>
 </p>
 
 <p>
@@ -29,6 +29,15 @@
   <strong>Location:</strong>
   <%= @game.location %>
 </p>
+
+<%= render 'player_game_statistics/form' %>
+<% @team_players.each do |player|%>
+  <%= player.name %>
+<% end %>
+<% @opponent_players.each do |player|%>
+  <%= player.name %>
+<% end %>
+
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
