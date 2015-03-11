@@ -29,6 +29,7 @@
     <% @teams.each do |team| %>
       <tr>
         <td><%= team.name %></td>
+        <td><%= team.score(@tournament)%></td>
       </tr>
     <% end %>
   </tbody>
