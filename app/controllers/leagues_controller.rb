@@ -10,7 +10,7 @@ class LeaguesController < ApplicationController
   # GET /leagues/1
   # GET /leagues/1.json
   def show
-    @tournaments=@league.tournaments.sort_by &:year
+    @tournaments=@league.tournaments.sort_by :year
     @tournaments.reverse!
   end
 
