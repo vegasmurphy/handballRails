@@ -64,11 +64,6 @@ ActiveRecord::Schema.define(version: 20140728152120) do
     t.datetime "updated_at"
   end
 
-  create_table "searches", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "team_tournaments", force: true do |t|
     t.integer  "team_id"
     t.integer  "tournament_id"

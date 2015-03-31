@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -10,6 +10,7 @@ end
 group :production do
   gem 'pg'
 end
+gem "heroku"
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 # Use SCSS for stylesheets
