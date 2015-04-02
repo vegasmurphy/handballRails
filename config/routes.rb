@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :articles
+
   resources :player_game_statistics
 
   get 'search/index'

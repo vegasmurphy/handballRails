@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728152120) do
+ActiveRecord::Schema.define(version: 20150401223411) do
+
+  create_table "articles", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "thumbnail"
+  end
 
   create_table "games", force: true do |t|
     t.string   "team_id"
