@@ -1,29 +1,22 @@
-<h1>Listing articles</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @articles.each do |article| %>
-<%= article.thumbnail %>
-      <tr>
-        <td><%= article.title %></td>
+<h1>Ultimas Noticias!</h1>
+<div class="row">
+<% if !@articles.blank? %>
+  <% for article in @articles %>
+        <div class="col-lg-4">
+          <img class="img-square" src=<%= article.thumbnail %> alt="Generic placeholder image" width="140" height="140">
+          <h2><%= link_to article.title, article %></h2>
+          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+        </div><!-- /.col-lg-4 -->
+ <% end %>
+<% else %>
+  
+<% end %>
+      </div>
 
-       <% if article.thumbnail %>
-          <td><img src=<%=article.thumbnail%>  /></td>
-        <% end %>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+
+
 
 <br>
 

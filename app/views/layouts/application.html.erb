@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="wrapper">
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,10 +66,9 @@
 <%= yield %>
 
 </div>
-<footer class="footer">
-      <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
-      </div>
+</div>
+<footer class="footer panel-footer" id="footer">
+<p class="small text-center">Copyright 2015 all rights reserved Athelatics&reg </p>
     </footer>
 </body>
 </html>
