@@ -1,0 +1,74 @@
+  <div class="container">
+	  <div class="row">
+		  <div class="col-lg-6">
+			  <div class="container">
+			    <div class="row">
+			    	<div class="col-lg-1">
+			    	<strong><%= @game.team.name %></strong>
+			    	</div>
+			    	<div class="col-lg-1"><%= @game.team_score  %></div>
+			    </div>
+			    <div class="row">
+			    <div class="field col-lg-1">
+			        Player
+			      </div>
+			      <div class="field col-lg-1">
+			        Goals
+			      </div>
+			      <div class="field col-lg-1">
+			        Yellow Cards
+			      </div>
+			      <div class="field col-lg-1">
+			        Red Cards
+			      </div>
+			      <div class="field col-lg-1">
+			        Dos minutos
+			      </div>
+			    </div>
+			    <% @team_stats.each do |stat| %>
+			    <div class="row">
+			      <div class="field col-lg-1">
+			        <%= stat.player.name %>
+			      </div>
+			  		<%= render 'player_game_statistics/form', :stat=>stat %>
+			    </div>
+			    <% end %>
+			  </div>
+		  </div>
+		  	<div class="col-lg-6">
+			    <div class="container">
+				<div class="row">
+			    	<div class="col-lg-1">
+			    	<strong><%= @game.opponent.name %></strong>
+			    	</div>
+			    	<div class="col-lg-1"><%= @game.opponent_score  %></div>
+			    </div>
+			    <div class="row">
+			    <div class="field col-lg-1">
+			        Player
+			      </div>
+			      <div class="field col-lg-1">
+			        Goals
+			      </div>
+			      <div class="field col-lg-1">
+			        Yellow Cards
+			      </div>
+			      <div class="field col-lg-1">
+			        Red Cards
+			      </div>
+			      <div class="field col-lg-1">
+			        Dos minutos
+			      </div>
+			    </div>
+			    <% @opponent_stats.each do |stat| %>
+			    <div class="row">
+			      <div class="field col-lg-1">
+			        <%= stat.player.name %>
+			      </div>
+			  		<%= render 'player_game_statistics/form', :stat=>stat %>
+			    </div>
+			    <% end %>
+			  </div>
+		  </div>
+	  </div>
+  </div>

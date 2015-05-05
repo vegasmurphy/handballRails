@@ -12,10 +12,10 @@ class TeamsController < ApplicationController
   # GET /teams/1.json
   def show
     @teams = Team.all
-    @visiting_games = @team.visiting_games
-    @local_games = @team.games.where("tournament_id = ?",1)
+    @visiting_games = @team.visiting_games.where("tournament_id = ?",@current_tournament.id)
+    @local_games = @team.games.where("tournament_id = ?",@current_tournament.id)
     @games = @local_games+@visiting_games
-    @players = @team.players
+    @players = @team.players.where("tournament_id = ?",@current_tournament.id)
     @scores = {}
     #@query = @team.score(@team.tournaments.find(1))
     @tournaments=@team.tournaments
@@ -26,9 +26,25 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
+    @leagues = League.all
     @team = Team.new
   end
 
+  def team_list
+    if params[:league_id]
+      @league = League.find(params[:league_id])
+      @tournament = get_current_tournament(@league.tournaments)
+      print("Tournament found ", @tournament.teams.first.name)
+      @teams = @tournament.teams
+    else
+      @teams = Team.all
+    end
+    @response = {"teams" => @teams, "tournament" => @tournament.id}
+    print (@response)
+    respond_with(@response) do |format|
+      format.json { render :json => @response.to_json }
+    end 
+  end
   # GET /teams/1/edit
   def edit
   end
@@ -81,7 +97,7 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name)
+      params.require(:team).permit(:name,:logo_link)
     end
     
     def set_current_tournament

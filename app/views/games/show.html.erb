@@ -30,14 +30,6 @@
   <%= @game.location %>
 </p>
 
-<%= render 'player_game_statistics/form' %>
-<% @team_players.each do |player|%>
-  <%= player.name %>
-<% end %>
-<% @opponent_players.each do |player|%>
-  <%= player.name %>
-<% end %>
-
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

@@ -12,12 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :player_id %><br>
-    <%= f.number_field :player_id %>
+  <%= collection_select(:league, :id, League.all, :id, :name,:prompt => "Elija liga") %>
   </div>
   <div class="field">
-    <%= f.label :team_id %><br>
-    <%= f.number_field :team_id %>
+    <%= f.select :player_id, options_from_collection_for_select(@players, "id", "name", @player_team_tournament.player_id) %> 
+  </div>
+  <div class="field">
+  <%= f.select :team_id, options_from_collection_for_select(@teams, "id", "name", @player_team_tournament.team_id) %> 
   </div>
   <div class="field">
     <%= f.label :tournament_id %><br>

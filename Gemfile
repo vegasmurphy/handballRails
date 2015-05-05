@@ -10,10 +10,13 @@ end
 group :production do
   gem 'pg'
 end
+gem 'jquery-turbolinks'
 gem "heroku"
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'ckeditor'
+gem 'devise'
+gem "figaro", "~> 0.7.0"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

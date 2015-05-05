@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy]
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :games]
   before_action :authenticate, except: [:index, :show]
 
   # GET /tournaments
@@ -13,6 +13,10 @@ class TournamentsController < ApplicationController
   # GET /tournaments/1.json
   def show
     @teams=@tournament.teams
+    @teams = @teams.sort { |a,b| a.score(@tournament)[:goal_difference] <=> b.score(@tournament)[:goal_difference] }
+    @teams = @teams.sort { |a,b| a.score(@tournament)[:points] <=> b.score(@tournament)[:points] }
+    @teams.reverse!
+    @games = @tournament.games
   end
 
   # GET /tournaments/new
@@ -30,6 +34,9 @@ class TournamentsController < ApplicationController
     @team_tournament=@tournament.team_tournaments.build
   end
 
+  def games
+    @games = @tournament.games
+  end
 
   # POST /tournaments
   # POST /tournaments.json

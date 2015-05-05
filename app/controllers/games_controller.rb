@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate, except: [:index, :show]
+  before_action :set_game, only: [:show, :edit, :update, :destroy, :stats]
+  before_action :authenticate, except: [:index]
   # GET /games
   # GET /games.json
   def index
@@ -18,8 +18,25 @@ class GamesController < ApplicationController
     @game = Game.new
   end
 
+  def stats
+    @team_stats = []
+    @opponent_stats = []
+    for player in @team_players
+      stat=PlayerGameStatistic.new({:game_id => @game.id,:player_id=>player.id})
+      @team_stats.push(stat)
+    end
+    for player in @opponent_players
+      stat = PlayerGameStatistic.new({:game_id => @game.id,:player_id=>player.id})
+      @opponent_stats.push(stat)
+    end
+  end
   # GET /games/1/edit
   def edit
+    print "ID:", @game.tournament_id
+    @tournament = Tournament.find(@game.tournament_id)
+    @teams = @tournament.teams
+    @league = League.find(@tournament.league_id)
+    print "LEAGUE", @league
   end
 
   # POST /games
@@ -67,13 +84,13 @@ class GamesController < ApplicationController
     def set_game
       @game = Game.find(params[:id])
       get_team_players
-      @player_game_statistic=PlayerGameStatistic.new({:game_id => @game.id,:player_id=>get_team_players.first.id})
+      @player_game_statistic=PlayerGameStatistic.new({:game_id => @game.id,:player_id=>Player.all.first.id})
       get_opponent_players
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:team_id, :opponent_id, :team_score, :opponent_score, :date, :location,:tournament_id)
+      params.require(:game).permit(:team_id, :opponent_id, :team_score, :opponent_score, :date, :location,:tournament_id, :fecha)
     end
 
     def get_team_players

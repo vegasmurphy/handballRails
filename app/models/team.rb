@@ -20,27 +20,31 @@ class Team < ActiveRecord::Base
         ga=0
         gd=0
     	visiting_games.where("tournament_id = ?",tournament).each do |game|
-			count=count+1
-            gf+=game.opponent_score
-            ga+=game.team_score
-            if game.opponent_score>game.team_score
-                points+=3
-            elsif game.opponent_score==game.team_score
-                points+=2
-            else
-                points+=1
+			if(!game.team_score.nil? & (game.date < Date.today))
+                count=count+1
+                gf+=game.opponent_score
+                ga+=game.team_score
+                if game.opponent_score>game.team_score
+                    points+=3
+                elsif game.opponent_score==game.team_score
+                    points+=2
+                else
+                    points+=1
+                end
             end
     	end
     	games.where("tournament_id = ?",tournament).each do |game|
-			count=count+1
-            ga+=game.opponent_score
-            gf+=game.team_score
-            if game.opponent_score<game.team_score
-                points+=3
-            elsif game.opponent_score==game.team_score
-                points+=2
-            else
-                points+=1
+			if(!game.opponent_score.nil? & (game.date < Date.today))
+                count=count+1
+                ga+=game.opponent_score
+                gf+=game.team_score
+                if game.opponent_score<game.team_score
+                    points+=3
+                elsif game.opponent_score==game.team_score
+                    points+=2
+                else
+                    points+=1
+                end
             end
     	end
     	scores[:games_played]=count

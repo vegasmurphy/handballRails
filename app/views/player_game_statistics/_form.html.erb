@@ -1,41 +1,31 @@
-<%= form_for(@player_game_statistic) do |f| %>
-  <% if @player_game_statistic.errors.any? %>
+<%= form_for(stat, remote: true) do |f| %>
+  <% if stat.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@player_game_statistic.errors.count, "error") %> prohibited this player_game_statistic from being saved:</h2>
+      <h2><%= pluralize(stat.errors.count, "error") %> prohibited this stat from being saved:</h2>
 
       <ul>
-      <% @player_game_statistic.errors.full_messages.each do |message| %>
+      <% stat.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :game_id %><br>
-    <%= f.number_field :game_id %>
-  </div>
-  <div class="field">
-    <%= f.label :player_id %><br>
-    <%= f.number_field :player_id %>
-  </div>
-  <div class="field">
-    <%= f.label :goals %><br>
-    <%= f.number_field :goals %>
-  </div>
-  <div class="field">
-    <%= f.label :yellow_cards %><br>
-    <%= f.number_field :yellow_cards %>
-  </div>
-  <div class="field">
-    <%= f.label :red_cards %><br>
-    <%= f.number_field :red_cards %>
-  </div>
-  <div class="field">
-    <%= f.label :two_minutes %><br>
-    <%= f.number_field :two_minutes %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <div class="field hidden">
+        <%= f.number_field :game_id %>
+      </div>
+      <div class="field hidden">
+        <%= f.number_field :player_id %>
+      </div>
+      <div class="field col-lg-1">
+        <%= f.number_field :goals, :style=> 'width: 40px'%>
+      </div>
+      <div class="field col-lg-1">
+        <%= f.number_field :yellow_cards, :style=> 'width: 40px' %>
+      </div>
+      <div class="field col-lg-1">
+        <%= f.number_field :red_cards, :style=> 'width: 40px' %>
+      </div>
+      <div class="field col-lg-1">
+        <%= f.number_field :two_minutes, :style=> 'width: 40px' %>
+      </div>
 <% end %>

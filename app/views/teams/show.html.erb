@@ -1,11 +1,17 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h1><%= @team.name %></h1>
+    </div>
+    <div class="col-lg-4">
+      <img src=<%= @team.logo_link  %> border="0"/>
+    </div>  
+  </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
 
-<h1>Listing games</h1>
+<h1>Partidos del torneo actual</h1>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -14,24 +20,29 @@
       <th>Team score</th>
       <th>Opponent score</th>
       <th>Date</th>
-      <th>Location</th>
+      <th>Location</th>      
+      <th>Liga</th>
+      <th>fecha</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @games.each do |game| %>
-      <tr>
-        <td><%= @teams.find(game.team_id).name %></td>
-        <td><%= @teams.find(game.opponent_id).name %></td>
-        <td><%= game.team_score %></td>
-        <td><%= game.opponent_score %></td>
-        <td><%= game.date %></td>
-        <td><%= game.location %></td>
-        <td><%= link_to 'Show', game %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        
+        <tr>
+        <td><img src=<%=game.team.logo_link  %> border="0" style="height:50px; width:50px;" /></a><%= link_to game.team.name, team_path(game.team.id) %></td>
+        <td><img src=<%=game.opponent.logo_link  %> border="0" style="height:50px; width:50px;" /><%= link_to game.opponent.name, team_path(game.opponent.id) %></td>
+          <td><%= game.team_score %></td>
+          <td><%= game.opponent_score %></td>
+          <td><%= game.date %></td>
+          <td><%= game.location %></td>
+          <td><%= game.tournament.league.name %></td>
+          <td><%= game.fecha %></td>
+          <td><%= link_to 'Show', game %></td>
+          <td><%= link_to 'Edit', edit_game_path(game) %></td>
+          <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
     <% end %>
   </tbody>
 </table>
@@ -58,54 +69,8 @@
     <% end %>
   </tbody>
 </table>
-<%= @scores %>
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Year</th>
-      <th>Semester</th>
-      <th>League</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tournaments.each do |tournament| %>
-      <tr>
-        <td><%= tournament.year %></td>
-        <td><%= tournament.semester %></td>
-        <td><%= League.find(tournament.league_id).name %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 
-<table class="table">
-  <thead>
-      <tr>
-        <th>Games Played</th>
-        <th>Points</th>
-        <th>Goals Favor</th>
-        <th>Goals Against</th>
-        <th>Goals Difference</th>
-      </tr>
-  </thead>
-<tbody>
-  <% @team.tournaments.each do |tournament| %>
-      <% score=@scores[tournament] %>
-      <tr><%= tournament.year%></tr>
-      <tr>
-        <td><%= score[:games_played] %></td>
-        <td><%= score[:points] %></td>
-        <td><%= score[:goals_favor] %></td>
-        <td><%= score[:goals_against] %></td>
-        <td><%= score[:goal_difference] %></td>
-      </tr>
-      <% end %>
-  </tbody>
-</table>
-Current:
-<%= @current_tournament %>

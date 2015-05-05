@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :articles
 
   resources :player_game_statistics
@@ -19,12 +20,14 @@ Rails.application.routes.draw do
 
   resources :teams
 
+  post 'team_list' => "teams#team_list", as: :team_list
+
   resources :leagues do
     resources :tournaments
     get 'tournaments/:id/add_team' => 'tournaments#add_team'
+    get 'tournaments/:id/games' => 'tournaments#games'
   end
-
-
+  get 'games/:id/stats' => 'games#stats'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -11,11 +11,14 @@
     </div>
   <% end %>
 
+  <div class="field">
+  <%= collection_select(:league, :id, League.all, :id, :name,:prompt => "Elija liga") %>
+  </div> 
   <div class="field"> 
-  <%= f.select :team_id, options_from_collection_for_select(@teams, "id", "name") %> 
+  <%= f.select :team_id, options_from_collection_for_select(@teams, "id", "name", @game.team_id) %> 
   </div>  
   <div class="field"> 
-  <%= f.select :opponent_id, options_from_collection_for_select(@teams, "id", "name") %> 
+  <%= f.select :opponent_id, options_from_collection_for_select(@teams, "id", "name", @game.opponent_id) %> 
   </div>
   <div class="field">
     <%= f.label :team_score %><br>
@@ -36,6 +39,10 @@
   <div class="field">
     <%= f.label :tournament_id %><br>
     <%= f.number_field :tournament_id %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha %><br>
+    <%= f.number_field :fecha %>
   </div>
   <div class="actions">
     <%= f.submit %>
