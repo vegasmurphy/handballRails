@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
+	$("#submitForms").click ->
+		submitForms()
 	if $("#league_id").length
 		console.log "found it"
 		populate_contacts()
@@ -47,3 +49,9 @@ populate_contacts = ->
 	else
 		$team_select.html '<option value="">Select the League:</option>'
 		$opponent_select.html '<option value="">Select the League:</option>'
+
+submitForms =->
+	$("form.new_player_game_statistic").each ->
+		$(this).submit()
+	$("form.edit_player_game_statistic").each ->
+		$(this).submit()

@@ -22,11 +22,18 @@ class GamesController < ApplicationController
     @team_stats = []
     @opponent_stats = []
     for player in @team_players
-      stat=PlayerGameStatistic.new({:game_id => @game.id,:player_id=>player.id})
+      stat=PlayerGameStatistic.find_by game_id: @game.id, player_id: player.id
+      if(!stat)
+        stat=PlayerGameStatistic.new({:game_id => @game.id,:player_id=>player.id})
+      end
+      print "Found this stat ",stat.player_id, stat.goals
       @team_stats.push(stat)
     end
     for player in @opponent_players
-      stat = PlayerGameStatistic.new({:game_id => @game.id,:player_id=>player.id})
+      stat=PlayerGameStatistic.find_by game_id: @game.id, player_id: player.id
+      if !stat
+        stat = PlayerGameStatistic.new({:game_id => @game.id,:player_id=>player.id})
+      end
       @opponent_stats.push(stat)
     end
   end

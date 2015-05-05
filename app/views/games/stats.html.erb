@@ -19,10 +19,10 @@
 			        Yellow Cards
 			      </div>
 			      <div class="field col-lg-1">
-			        Red Cards
+			      	Dos Minutos
 			      </div>
 			      <div class="field col-lg-1">
-			        Dos minutos
+			        Red Cards
 			      </div>
 			    </div>
 			    <% @team_stats.each do |stat| %>
@@ -54,16 +54,17 @@
 			        Yellow Cards
 			      </div>
 			      <div class="field col-lg-1">
-			        Red Cards
+			        Dos minutos
 			      </div>
 			      <div class="field col-lg-1">
-			        Dos minutos
+			        Red Cards
 			      </div>
 			    </div>
 			    <% @opponent_stats.each do |stat| %>
 			    <div class="row">
 			      <div class="field col-lg-1">
 			        <%= stat.player.name %>
+			        goles<%= stat.goals %>
 			      </div>
 			  		<%= render 'player_game_statistics/form', :stat=>stat %>
 			    </div>
@@ -72,3 +73,4 @@
 		  </div>
 	  </div>
   </div>
+  <button class="btn btn-default btn-success" id="submitForms">Submit</button>
