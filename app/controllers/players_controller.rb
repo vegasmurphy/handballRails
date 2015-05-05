@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
   before_action :authenticate, except: [:index, :show]
+  before_action :set_current_tournament, only: [:show]
   # GET /players
   # GET /players.json
   def index
@@ -10,7 +11,8 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
-    @teams = @player.teams
+    @ptt = PlayerTeamTournament.find_by tournament_id: @current_tournament.id, player_id: @player.id
+    @team = Team.find @ptt.team_id
   end
 
   # GET /players/new
@@ -70,6 +72,9 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name)
+      params.require(:player).permit(:name,:weight,:height,:photo_link,:position,:handedness)
+    end
+    def set_current_tournament
+      @current_tournament=Tournament.get_current_tournament
     end
 end

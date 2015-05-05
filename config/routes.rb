@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   devise_for :users
   resources :articles
 
@@ -21,7 +23,9 @@ Rails.application.routes.draw do
   resources :teams
 
   post 'team_list' => "teams#team_list", as: :team_list
-
+  resources :players do
+    resources :user_profiles
+  end
   resources :leagues do
     resources :tournaments
     get 'tournaments/:id/add_team' => 'tournaments#add_team'
