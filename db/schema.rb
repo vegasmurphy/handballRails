@@ -101,18 +101,6 @@ ActiveRecord::Schema.define(version: 20150505052639) do
     t.integer  "number_games"
   end
 
-  create_table "user_profiles", force: true do |t|
-    t.integer  "player_id"
-    t.text     "description"
-    t.string   "photo_link"
-    t.string   "handedness"
-    t.string   "position"
-    t.integer  "height"
-    t.integer  "weight"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

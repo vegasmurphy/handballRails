@@ -13,8 +13,8 @@
   <tbody>
     <% @player_team_tournaments.each do |player_team_tournament| %>
       <tr>
-        <td><%= player_team_tournament.player_id %></td>
-        <td><%= player_team_tournament.team_id %></td>
+        <td><%= player_team_tournament.player.name %></td>
+        <td><%= player_team_tournament.team.name %></td>
         <td><%= player_team_tournament.tournament_id %></td>
         <td><%= link_to 'Show', player_team_tournament %></td>
         <td><%= link_to 'Edit', edit_player_team_tournament_path(player_team_tournament) %></td>

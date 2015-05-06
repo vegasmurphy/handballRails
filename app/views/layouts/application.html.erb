@@ -33,38 +33,32 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="<%= controller.class == ArticlesController ? 'active' : '' %>"><a href="/articles">Noticias</a></li>
-        <li class="<%= controller.class == TeamsController ? 'active' : '' %>"><a href="/teams">Equipos</a></li>
-        <li class="dropdown <%= controller.class == LeaguesController ? 'active' : '' %>">
+        <li class="<%= controller.class == GamesController ? 'active' : '' %>"><a href="/games">Partidos</a></li>
+        <li class="dropdown <%= (controller.class == LeaguesController)||(controller.class == TournamentsController) ? 'active' : '' %>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ligas <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/leagues">All leagues</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="/leagues">Todas las ligas</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="/leagues/1">Liga de honor Masculino</a></li>
+            <li><a href="/leagues/2">Liga de honor Femenino</a></li>
             <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="/leagues/4">Primera B Femenina</a></li>
+            <li><a href="/leagues/3">Primera B Masculino</a></li>
           </ul>
         </li>
+        <li class="<%= controller.class == TeamsController ? 'active' : '' %>"><a href="/teams">Equipos</a></li>
+        <li class="<%= controller.class == PlayersController ? 'active' : '' %>"><a href="/players">Jugadores</a></li>
       </ul>
+
+      <ul class="nav navbar-nav navbar-right">
       <form class="navbar-form navbar-left" role="search" action="/search/index" method="get">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Buscar" name="query">
         </div>
         <button type="submit" class="btn btn-default">Buscar</button>
       </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="<%= controller.class == PlayersController ? 'active' : '' %>"><a href="/players">Jugadores</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mas cosas <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/games">Partidos</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

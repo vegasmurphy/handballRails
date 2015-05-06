@@ -12,6 +12,10 @@ class LeaguesController < ApplicationController
   def show
     @tournaments=@league.tournaments.sort_by &:year
     @tournaments.reverse!
+    @current_tournament=@league.tournaments.where("year = ? AND semester =?",Tournament.current_tournament[:year],Tournament.current_tournament[:semester]).first
+    if (@current_tournament)
+      redirect_to league_tournament_path(@league.id,@current_tournament.id)
+    end
   end
 
   # GET /leagues/new

@@ -4,10 +4,13 @@
   <strong>Name:</strong>
   <%= @player.name %>
 </p>
+<% if @player.photo_link %>
 <img src=<%= @player.photo_link  %> style="height:200px;width:200px;" border="0"/>
+<% end %>
+
 <p>
   <strong>Equipo actual:</strong>
-	<%= @team.name %>
+		<%= @team.name %>
 </p>
   <strong>Peso actual:</strong>
 	<%= @player.weight %>

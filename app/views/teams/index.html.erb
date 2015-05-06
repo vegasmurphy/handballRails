@@ -1,28 +1,35 @@
-<h1>Listing teams</h1>
+<h1>Listado de todos los equipos</h1>
+<p>Seleccione el equipo que desea ver</p>
+
+<div class="form-group">
+  <label for="leagueFilter">Filtrar por Liga</label>
+  <select class="form-control" id="leagueFilter">
+  <option value="">Todas las Ligas</option>
+<% if League.all %>
+  <% for item in League.all %>
+    <option value=<%=item.name.delete(' ')%>><%= item.name  %></option>
+  <% end %>
+<% end %>
+  </select>
+</div>
+
 
 <table class="table table-bordered">
   <thead>
     <tr>
       <th>Nombre</th>
       <th>Liga</th>
-      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @teams.each do |team| %>
-      <tr>
+      <tr class="team_row <%=team.get_current_tournament.league.name.delete(' ')  %>">
         <td><img src=<%=team.logo_link  %> border="0" style="height:50px; width:50px; margin-right:5px" /><%= link_to team.name, team %></td>
         <td><% if team.get_current_tournament %>
         <%= team.get_current_tournament.league.name %></td>
         <% end %>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Team', new_team_path %>

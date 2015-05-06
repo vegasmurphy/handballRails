@@ -1,6 +1,23 @@
-<h1>Listing games</h1>
-
-<table class="table table-bordered">
+<h1>Partidos</h1>
+<div class="bs-example">
+    <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#AllGames">Todos</a></li>
+    <li>
+      <div class="dropdown">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <% for i in 1..12 %>
+        <li><a data-toggle="tab" href=<%="#Fecha"+i.to_s%>><%="Fecha "+i.to_s%></a></li>
+      <% end %>
+        </ul>
+      </div>
+      </li>
+      <% for i in 1..12 %>
+        <li><a data-toggle="tab" href=<%="#Fecha"+i.to_s%>><%="Fecha "+i.to_s%></a></li>
+      <% end %>
+      </ul>
+        <div class="tab-content">
+        <div id= "AllGames" class="tab-pane fade active in">
+            <table class="table table-bordered">
   <thead>
     <tr>
       <th>Team</th>
@@ -16,38 +33,30 @@
   </thead>
 
   <tbody>
-    <% @games.each do |game| %>
-      <tr>
+    <% @games.each do |game| %>    
+        <tr>
         <td><img src=<%=game.team.logo_link  %> border="0" style="height:50px; width:50px;" /></a><%= link_to game.team.name, team_path(game.team.id) %></td>
         <td><img src=<%=game.opponent.logo_link  %> border="0" style="height:50px; width:50px;" /><%= link_to game.opponent.name, team_path(game.opponent.id) %></td>
-        <td><%= game.team_score %></td>
-        <td><%= game.opponent_score %></td>
-        <td><%= game.date %></td>
-        <td><%= game.location %></td>
-        <td><%= game.tournament.league.name %></td>
-        <td><%= game.fecha %></td>
-        <td><%= link_to 'Show', game %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+          <td><%= game.team_score %></td>
+          <td><%= game.opponent_score %></td>
+          <td><%= game.date %></td>
+          <td><%= game.location %></td>
+          <td><%= game.tournament.league.name %></td>
+          <td><%= game.fecha %></td>
+          <td><%= link_to 'Show', game %></td>
+          <td><%= link_to 'Edit', edit_game_path(game) %></td>
+          <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
   </tbody>
 </table>
+        </div>
 
-<br>
 
-<%= link_to 'New Game', new_game_path %>
-<div class="bs-example">
-    <ul class="nav nav-tabs">
 
-      <% for i in 1..12 %>
-        <li><a data-toggle="tab" href=<%="#Fecha"+i.to_s%>><%="Fecha "+i.to_s%></a></li>
-      <% end %>
-      </ul>
-        <div class="tab-content">
-      <% for i in  1..12%>
-        <div id= <%="Fecha"+i.to_s%> class="tab-pane fade">
-            <table class="table table-bordered">
+<% for i in  1..12%>
+  <div id= <%="Fecha"+i.to_s%> class="tab-pane fade">
+      <table class="table table-bordered">
   <thead>
     <tr>
       <th>Team</th>
@@ -83,8 +92,7 @@
     <% end %>
   </tbody>
 </table>
-            <h3>Section A</h3>
-            <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui. Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
         </div>
       <% end %>       
       </div>
+<%= link_to 'New Game', new_game_path %>

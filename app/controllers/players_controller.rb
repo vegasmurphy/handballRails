@@ -11,8 +11,10 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
-    @ptt = PlayerTeamTournament.find_by tournament_id: @current_tournament.id, player_id: @player.id
-    @team = Team.find @ptt.team_id
+    @team = @player.teams.where("tournament_id = ?",@current_tournament.id).first
+    puts @team.id
+    #@ptt = PlayerTeamTournament.find_by tournament_id: @current_tournament.id, player_id: @player.id
+    #@team = Team.find @ptt.team_id
   end
 
   # GET /players/new
@@ -75,6 +77,7 @@ class PlayersController < ApplicationController
       params.require(:player).permit(:name,:weight,:height,:photo_link,:position,:handedness)
     end
     def set_current_tournament
-      @current_tournament=Tournament.get_current_tournament
+      @current_tournament=Player.find(params[:id]).get_current_tournament
+
     end
 end

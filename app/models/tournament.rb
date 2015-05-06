@@ -6,8 +6,8 @@ class Tournament < ActiveRecord::Base
 	has_many :player_goals, dependent: :destroy
 	has_many :players, :through => :player_team_tournaments
 
-    def self.get_current_tournament
-        self.where("year = ? AND semester =?",self.current_tournament[:year],self.current_tournament[:semester]).first
+    def self.get_current_tournaments
+        self.where("year = ? AND semester =?",self.current_tournament[:year],self.current_tournament[:semester])
     end
     def self.current_tournament
         year=Date.current.year

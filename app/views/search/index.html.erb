@@ -1,6 +1,6 @@
 <h1>Search Results</h1>
-<% if @players %>
-<h2>Players</h2>
+<% if @players.length != 0 %>
+<h2>Jugadores</h2>
 <ul>
   <% @players.each do |grant| %>
 	  <li><%= link_to grant.name, player_path(grant), 
@@ -8,12 +8,12 @@
   <% end %>
 </ul>
 <% end %>
-<% if @teams %>
+<% if @teams.length != 0 %>
 <h2>Teams</h2>
 <ul>
   <% @teams.each do |grant| %>
 	  <li><%= link_to grant.name, team_path(grant), 
-	    :action => 'show'  %></li>
+	    :action => 'show'  %> (<%=grant.get_current_tournament.league.name  %>)</li>
   <% end %>
 </ul>
 <% end %>

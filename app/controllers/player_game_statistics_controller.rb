@@ -28,7 +28,7 @@ class PlayerGameStatisticsController < ApplicationController
 
     respond_to do |format|
       if @player_game_statistic.save
-        format.html { redirect_to @player_game_statistic, notice: 'Player game statistic was successfully created.' }
+        #format.html { redirect_to @player_game_statistic, notice: 'Player game statistic was successfully created.' }
         format.json { render :show, status: :created, location: @player_game_statistic }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class PlayerGameStatisticsController < ApplicationController
   def update
     respond_to do |format|
       if @player_game_statistic.update(player_game_statistic_params)
-        format.html { redirect_to @player_game_statistic, notice: 'Player game statistic was successfully updated.' }
+        #format.html { redirect_to @player_game_statistic, notice: 'Player game statistic was successfully updated.' }
         format.json { render :show, status: :ok, location: @player_game_statistic }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class PlayerGameStatisticsController < ApplicationController
   def destroy
     @player_game_statistic.destroy
     respond_to do |format|
-      format.html { redirect_to player_game_statistics_url, notice: 'Player game statistic was successfully destroyed.' }
+      #format.html { redirect_to player_game_statistics_url, notice: 'Player game statistic was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
